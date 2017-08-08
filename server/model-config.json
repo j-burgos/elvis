@@ -24,5 +24,9 @@
   "ACL": {
     "dataSource": "db",
     "public": false
+  },
+  "Product": {
+    "dataSource": "db",
+    "public": false
   }
 }
