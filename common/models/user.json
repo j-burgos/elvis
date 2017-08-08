@@ -8,7 +8,20 @@
   },
   "properties": {},
   "validations": [],
-  "relations": {},
+  "relations": {
+    "products": {
+      "type": "hasMany",
+      "model": "product",
+      "foreignKey": "userId",
+      "through": "inventory"
+    },
+    "prices": {
+      "type": "hasMany",
+      "model": "price",
+      "foreignKey": "userId",
+      "through": "price"
+    }
+  },
   "acls": [],
   "methods": {}
 }

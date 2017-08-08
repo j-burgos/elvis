@@ -31,5 +31,13 @@
   "user": {
     "dataSource": "db",
     "public": true
+  },
+  "inventory": {
+    "dataSource": "db",
+    "public": false
+  },
+  "price": {
+    "dataSource": "db",
+    "public": false
   }
 }

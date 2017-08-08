@@ -7,7 +7,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
     }
@@ -17,6 +17,18 @@
     "likes": {
       "type": "hasAndBelongsToMany",
       "model": "user"
+    },
+    "inventory": {
+      "type": "hasMany",
+      "model": "user",
+      "foreignKey": "productId",
+      "through": "inventory"
+    },
+    "prices": {
+      "type": "hasMany",
+      "model": "price",
+      "foreignKey": "productId",
+      "through": "price"
     }
   },
   "acls": [],
