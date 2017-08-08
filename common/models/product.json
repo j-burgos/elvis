@@ -1,6 +1,6 @@
 {
-  "name": "Product",
-  "plural": "Products",
+  "name": "product",
+  "plural": "products",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -13,7 +13,12 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "likes": {
+      "type": "hasAndBelongsToMany",
+      "model": "user"
+    }
+  },
   "acls": [],
   "methods": {}
 }

@@ -13,20 +13,23 @@
       "./mixins"
     ]
   },
-  "User": {
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false,
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "user",
+        "foreignKey": "userId"
+      }
+    }
+  },
+  "product": {
     "dataSource": "db",
     "public": true
   },
-  "AccessToken": {
+  "user": {
     "dataSource": "db",
-    "public": false
-  },
-  "ACL": {
-    "dataSource": "db",
-    "public": false
-  },
-  "Product": {
-    "dataSource": "db",
-    "public": false
+    "public": true
   }
 }
