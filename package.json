@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "eslint .",
     "start": "per-env",
-    "start:development": "nodemon -L -r dotenv/config .",
+    "start:development": "nodemon -L --exec babel-node .",
+    "start:production": "node .",
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
@@ -24,6 +25,8 @@
     "strong-error-handler": "^2.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
     "dotenv": "^4.0.0",
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",

@@ -1,5 +1,10 @@
 'use strict';
 
+// Load environment variables from .env on development
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config()
+}
+
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
@@ -10,7 +15,7 @@ app.start = function() {
   return app.listen(function() {
     app.emit('started');
     var baseUrl = app.get('url').replace(/\/$/, '');
-    console.log('NODE_ENV: %s', process.env.NODE_ENV);
+    console.log('Environment: %s', process.env.NODE_ENV);
     console.log('Web server listening at: %s', baseUrl);
     if (app.get('loopback-component-explorer')) {
       var explorerPath = app.get('loopback-component-explorer').mountPath;
