@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-var server = require('./server');
+var server = require('../server');
 var ds = server.dataSources.db;
 
 ds.automigrate(() => {
