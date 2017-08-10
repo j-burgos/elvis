@@ -42,5 +42,30 @@
   "acls": [
   ],
   "methods": {
+    "prototype.buy": {
+      "description": "Creates an order for a customer",
+      "http": { "path":"/buy", "verb": "post" },
+      "accepts": [
+        {"arg": "options", "type": "object", "http": "optionsFromRequest"},
+        {"arg": "quantity", "type": "number", "required": true, "http": { "source": "body" }}
+      ],
+      "returns": { "arg": "data", "type": "Inventory", "root": true}
+    },
+    "prototype.like": {
+      "description": "Likes a product",
+      "http": { "path":"/like", "verb": "post" },
+      "accepts": [
+        {"arg": "options", "type": "object", "http": "optionsFromRequest"}
+      ],
+      "returns": { "arg": "product", "type": "Product", "root": true}
+    },
+    "prototype.dislike": {
+      "description": "Dislikes a product",
+      "http": { "path":"/like", "verb": "delete" },
+      "accepts": [
+        {"arg": "options", "type": "object", "http": "optionsFromRequest"}
+      ],
+      "returns": { "arg": "product", "type": "Product", "root": true}
+    }
   }
 }

@@ -18,7 +18,9 @@ const methods =  [
   'prototype.__delete__likes',
   'prototype.__destroyById__likes',
   'prototype.__updateById__likes',
-  'prototype.__exists__likes'
+  'prototype.__exists__likes',
+  'prototype.__link__likes',
+  'prototype.__unlink__likes'
 ]
 
 module.exports = function(Product) {
@@ -26,10 +28,8 @@ module.exports = function(Product) {
   methods.map(methodName => Product.disableRemoteMethodByName(methodName))
 
   Product.prototype.buy = async function (options, quantity) {
-
     const product = this;
     const app = Product.app
-
     const User = app.models.user;
     const Inventory = app.models.Inventory;
 
@@ -55,13 +55,13 @@ module.exports = function(Product) {
         quantity: quantity,
         transactionType: 'buy'
       }
-
       const createdOrder = await Inventory.create(order, trxOpts)
+
       const updatedProduct = {
         id: product.id,
         stock: currentStock - quantity,
       }
-      await Product.upsert(updatedProduct)
+      await Product.upsert(updatedProduct, trxOpts)
       trx.commit()
       return createdOrder
     } catch (err) {
@@ -70,16 +70,23 @@ module.exports = function(Product) {
     }
   }
 
-  Product.remoteMethod(
-    'prototype.buy',
-    {
-      accepts: [
-        {arg: 'options', type: 'object', http: 'optionsFromRequest'},
-        {arg: 'quantity', type: 'number', required: true, http: { source: 'body' }}
-      ],
-      returns: { 'arg': 'data', type: 'Inventory', root: true},
-      http: {path:'/buy', verb: 'post'},
-      description: 'Creates an order for a customer'
-    }
-  );
+  Product.prototype.like = async function (options) {
+    const product = this;
+    const app = Product.app
+    const User = app.models.user;
+    const Inventory = app.models.Inventory;
+    const userId = options && options.accessToken && options.accessToken.userId
+    await product.likes.add(userId)
+    return product
+  }
+
+  Product.prototype.dislike = async function (options) {
+    const product = this;
+    const app = Product.app
+    const User = app.models.user;
+    const Inventory = app.models.Inventory;
+    const userId = options && options.accessToken && options.accessToken.userId
+    await product.likes.remove(userId)
+    return product
+  }
 };

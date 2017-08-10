@@ -58,6 +58,8 @@
         "sharedMethods": {
           "*": false,
           "find": true,
+          "like": true,
+          "dislike": true,
           "deleteById": true,
           "patchAttributes": true,
           "create": true,
