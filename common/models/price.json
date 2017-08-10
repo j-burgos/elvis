@@ -1,5 +1,5 @@
 {
-  "name": "price",
+  "name": "Price",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -8,11 +8,18 @@
   "properties": {
     "price": {
       "type": "number",
-      "required": true
+      "required": true,
+      "default": 0.0,
+      "postgresql": {
+        "dataType": "decimal",
+        "dataPrecision": 10,
+        "dataScale": 2
+      }
     },
     "createdAt": {
       "type": "date",
-      "required": true
+      "required": true,
+      "defaultFn": "now"
     }
   },
   "validations": [],

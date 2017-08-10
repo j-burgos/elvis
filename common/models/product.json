@@ -1,5 +1,5 @@
 {
-  "name": "product",
+  "name": "Product",
   "plural": "products",
   "base": "PersistedModel",
   "idInjection": true,
@@ -10,27 +10,32 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "stock": {
+      "type": "number",
+      "required": true
+    },
+    "price": {
+      "type": "number",
+      "required": true,
+      "postgresql": {
+        "dataType": "decimal",
+        "dataPrecision": 10,
+        "dataScale": 2
+      }
     }
   },
   "validations": [],
   "relations": {
-    "likes": {
-      "type": "hasAndBelongsToMany",
-      "model": "user"
-    },
-    "inventory": {
+    "orders": {
       "type": "hasMany",
       "model": "user",
       "foreignKey": "productId",
-      "through": "inventory"
-    },
-    "prices": {
-      "type": "hasMany",
-      "model": "price",
-      "foreignKey": "productId",
-      "through": "price"
+      "through": "Inventory"
     }
   },
-  "acls": [],
-  "methods": {}
+  "acls": [
+  ],
+  "methods": {
+  }
 }

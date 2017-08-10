@@ -7,20 +7,11 @@
     "validateUpsert": true
   },
   "properties": {},
+  "hidden": [
+    "realm", "username", "password", "emailVerified"
+  ],
   "validations": [],
   "relations": {
-    "products": {
-      "type": "hasMany",
-      "model": "product",
-      "foreignKey": "userId",
-      "through": "inventory"
-    },
-    "prices": {
-      "type": "hasMany",
-      "model": "price",
-      "foreignKey": "userId",
-      "through": "price"
-    }
   },
   "acls": [],
   "methods": {}

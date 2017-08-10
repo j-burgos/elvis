@@ -13,6 +13,20 @@
       "./mixins"
     ]
   },
+  "user": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "login": true,
+          "logout": true
+        }
+      }
+    }
+  },
   "AccessToken": {
     "dataSource": "db",
     "public": false,
@@ -36,19 +50,26 @@
     "dataSource": "db",
     "public": false
   },
-  "product": {
+  "Product": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "find": true,
+          "deleteById": true,
+          "create": true,
+          "buy": true
+        }
+      }
+    }
   },
-  "user": {
-    "dataSource": "db",
-    "public": true
-  },
-  "inventory": {
+  "Inventory": {
     "dataSource": "db",
     "public": false
   },
-  "price": {
+  "Price": {
     "dataSource": "db",
     "public": false
   }
