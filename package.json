@@ -10,7 +10,8 @@
     "start": "per-env",
     "start:development": "nodemon -L --exec babel-node .",
     "start:production": "node .",
-    "posttest": "npm run lint && nsp check"
+    "posttest": "npm run lint && nsp check",
+    "create-test-users": "babel-node server/create-test-users.js"
   },
   "dependencies": {
     "compression": "^1.0.3",
