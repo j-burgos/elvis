@@ -1,5 +1,5 @@
 {
-  "name": "inventory",
+  "name": "Inventory",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -8,19 +8,28 @@
   "properties": {
     "quantity": {
       "type": "number",
-      "required": true
+      "required": true,
+      "default": 0
     },
     "price": {
       "type": "number",
-      "required": true
+      "required": true,
+      "default": 0.0,
+      "postgresql": {
+        "dataType": "decimal",
+        "dataPrecision": 10,
+        "dataScale": 2
+      }
     },
     "createdAt": {
       "type": "date",
-      "required": true
+      "required": true,
+      "defaultFn": "now"
     },
-    "type": {
+    "transactionType": {
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "noop"
     }
   },
   "validations": [],

@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = function(Inventory) {
-  Inventory.validatesInclusionOf('type', {in: ['add', 'remove']});
+  const validOptions = ['addStock', 'removeStock', 'buy', 'noop']
+  Inventory.validatesInclusionOf('transactionType', {in: validOptions});
 };
