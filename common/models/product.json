@@ -32,6 +32,11 @@
       "model": "user",
       "foreignKey": "productId",
       "through": "Inventory"
+    },
+    "likes": {
+      "type": "hasAndBelongsToMany",
+      "model": "user",
+      "foreignKey": "productId"
     }
   },
   "acls": [

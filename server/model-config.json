@@ -59,6 +59,7 @@
           "*": false,
           "find": true,
           "deleteById": true,
+          "patchAttributes": true,
           "create": true,
           "buy": true
         }

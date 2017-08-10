@@ -10,7 +10,15 @@ const methods =  [
   'prototype.__updateById__orders',
   'prototype.__unlink__orders',
   'prototype.__link__orders',
-  'prototype.__exists__orders'
+  'prototype.__exists__orders',
+
+  'prototype.__get__likes',
+  'prototype.__create__likes',
+  'prototype.__findById__likes',
+  'prototype.__delete__likes',
+  'prototype.__destroyById__likes',
+  'prototype.__updateById__likes',
+  'prototype.__exists__likes'
 ]
 
 module.exports = function(Product) {
