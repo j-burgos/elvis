@@ -58,17 +58,17 @@
         "sharedMethods": {
           "*": false,
           "find": true,
-          "like": true,
-          "dislike": true,
-          "deleteById": true,
-          "patchAttributes": true,
+          "findById": true,
           "create": true,
-          "buy": true
+          "deleteById": true,
+          "purchase": true,
+          "like": true,
+          "dislike": true
         }
       }
     }
   },
-  "Inventory": {
+  "Purchase": {
     "dataSource": "db",
     "public": false
   },

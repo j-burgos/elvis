@@ -1,16 +1,16 @@
 'use strict';
 
 const methods =  [
-  'prototype.__get__orders',
-  'prototype.__count__orders',
-  'prototype.__create__orders',
-  'prototype.__findById__orders',
-  'prototype.__delete__orders',
-  'prototype.__destroyById__orders',
-  'prototype.__updateById__orders',
-  'prototype.__unlink__orders',
-  'prototype.__link__orders',
-  'prototype.__exists__orders',
+  'prototype.__get__purchases',
+  'prototype.__count__purchases',
+  'prototype.__create__purchases',
+  'prototype.__findById__purchases',
+  'prototype.__delete__purchases',
+  'prototype.__destroyById__purchases',
+  'prototype.__updateById__purchases',
+  'prototype.__unlink__purchases',
+  'prototype.__link__purchases',
+  'prototype.__exists__purchases',
 
   'prototype.__get__likes',
   'prototype.__create__likes',
@@ -27,35 +27,37 @@ module.exports = function(Product) {
 
   methods.map(methodName => Product.disableRemoteMethodByName(methodName))
 
-  Product.prototype.buy = async function (options, quantity) {
-    const product = this;
+  Product.prototype.purchase = async function (options, data) {
     const app = Product.app
-    const User = app.models.user;
-    const Inventory = app.models.Inventory;
+    const User = app.models.user
+    const Purchase = app.models.Purchase
+
+    const product = this
+    const quantity = data.quantity
 
     const trxIsolationOpts = {isolationLevel: Product.Transaction.READ_COMMITTED}
     const trx = await Product.beginTransaction(trxIsolationOpts)
     const trxOpts = {transaction: trx, timeout: 30 * 1000}
 
     try {
-      const userId = options && options.accessToken && options.accessToken.userId
-      const user = await User.findById(userId)
-      if (!user) throw new Error('User not authorized')
+      const userId = options.accessToken.userId
 
-      const currentProduct = await Product.findById(product.id)
-      if (!currentProduct) throw new Error('Product not available')
-
-      const currentStock = currentProduct.stock
-      if (currentStock < quantity) throw new Error('Not enough stock')
-
-      const order = {
-        userId: user.id,
-        productId: currentProduct.id,
-        price: currentProduct.price,
-        quantity: quantity,
-        transactionType: 'buy'
+      const currentStock = product.stock
+      if (currentStock < quantity) {
+        const error = new Error();
+        error.status = 422
+        error.name = 'ValidationError'
+        error.message = 'Not enough stock'
+        throw error
       }
-      const createdOrder = await Inventory.create(order, trxOpts)
+
+      const purchase = {
+        userId: userId,
+        productId: product.id,
+        price: product.price,
+        quantity: quantity
+      }
+      const createdPurchase = await Purchase.create(purchase, trxOpts)
 
       const updatedProduct = {
         id: product.id,
@@ -63,7 +65,8 @@ module.exports = function(Product) {
       }
       await Product.upsert(updatedProduct, trxOpts)
       trx.commit()
-      return createdOrder
+
+      return createdPurchase
     } catch (err) {
       trx.rollback()
       throw err
@@ -71,22 +74,16 @@ module.exports = function(Product) {
   }
 
   Product.prototype.like = async function (options) {
-    const product = this;
-    const app = Product.app
-    const User = app.models.user;
-    const Inventory = app.models.Inventory;
-    const userId = options && options.accessToken && options.accessToken.userId
+    const product = this
+    const userId = options.accessToken.userId
     await product.likes.add(userId)
     return product
   }
 
   Product.prototype.dislike = async function (options) {
-    const product = this;
-    const app = Product.app
-    const User = app.models.user;
-    const Inventory = app.models.Inventory;
-    const userId = options && options.accessToken && options.accessToken.userId
+    const product = this
+    const userId = options.accessToken.userId
     await product.likes.remove(userId)
     return product
   }
-};
+}

@@ -8,16 +8,17 @@ const methods = [
   'prototype.__delete__accessTokens',
   'prototype.__destroyById__accessTokens',
   'prototype.__updateById__accessTokens',
-  'prototype.__get__orders',
-  'prototype.__count__orders',
-  'prototype.__create__orders',
-  'prototype.__findById__orders',
-  'prototype.__delete__orders',
-  'prototype.__destroyById__orders',
-  'prototype.__updateById__orders',
-  'prototype.__unlink__orders',
-  'prototype.__link__orders',
-  'prototype.__exists__orders'
+
+  'prototype.__get__purchases',
+  'prototype.__count__purchases',
+  'prototype.__create__purchases',
+  'prototype.__findById__purchases',
+  'prototype.__delete__purchases',
+  'prototype.__destroyById__purchases',
+  'prototype.__updateById__purchases',
+  'prototype.__unlink__purchases',
+  'prototype.__link__purchases',
+  'prototype.__exists__purchases'
 ]
 
 module.exports = function(User) {

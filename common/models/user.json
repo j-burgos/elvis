@@ -12,6 +12,11 @@
   ],
   "validations": [],
   "relations": {
+    "purchases": {
+      "type": "hasMany",
+      "model": "Order",
+      "foreignKey": "userId"
+    }
   },
   "acls": [],
   "methods": {}

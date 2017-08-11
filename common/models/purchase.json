@@ -1,5 +1,5 @@
 {
-  "name": "Inventory",
+  "name": "Order",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -8,8 +8,7 @@
   "properties": {
     "quantity": {
       "type": "number",
-      "required": true,
-      "default": 0
+      "required": true
     },
     "price": {
       "type": "number",
@@ -25,11 +24,6 @@
       "type": "date",
       "required": true,
       "defaultFn": "now"
-    },
-    "transactionType": {
-      "type": "string",
-      "required": true,
-      "default": "noop"
     }
   },
   "validations": [],

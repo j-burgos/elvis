@@ -27,11 +27,10 @@
   },
   "validations": [],
   "relations": {
-    "orders": {
+    "purchases": {
       "type": "hasMany",
-      "model": "user",
-      "foreignKey": "productId",
-      "through": "Inventory"
+      "model": "Purchase",
+      "foreignKey": "productId"
     },
     "likes": {
       "type": "hasAndBelongsToMany",
@@ -42,30 +41,30 @@
   "acls": [
   ],
   "methods": {
-    "prototype.buy": {
-      "description": "Creates an order for a customer",
-      "http": { "path":"/buy", "verb": "post" },
+    "prototype.purchase": {
+      "description": "Creates a customer purchase",
+      "http": { "path":"/purchases", "verb": "post" },
       "accepts": [
         {"arg": "options", "type": "object", "http": "optionsFromRequest"},
-        {"arg": "quantity", "type": "number", "required": true, "http": { "source": "body" }}
+        {"arg": "data", "type": "Purchase", "required": "true", "http": {"source": "body"}}
       ],
-      "returns": { "arg": "data", "type": "Inventory", "root": true}
+      "returns": { "arg": "data", "type": "Purchase", "root": true}
     },
     "prototype.like": {
       "description": "Likes a product",
-      "http": { "path":"/like", "verb": "post" },
+      "http": { "path":"/likes", "verb": "post" },
       "accepts": [
         {"arg": "options", "type": "object", "http": "optionsFromRequest"}
       ],
-      "returns": { "arg": "product", "type": "Product", "root": true}
+      "returns": { "arg": "product", "type": "Product", "root": "true"}
     },
     "prototype.dislike": {
       "description": "Dislikes a product",
-      "http": { "path":"/like", "verb": "delete" },
+      "http": { "path":"/likes", "verb": "delete" },
       "accepts": [
         {"arg": "options", "type": "object", "http": "optionsFromRequest"}
       ],
-      "returns": { "arg": "product", "type": "Product", "root": true}
+      "returns": { "arg": "product", "type": "Product", "root": "true"}
     }
   }
 }
