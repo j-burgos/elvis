@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 var server = require('../server');
 var ds = server.dataSources.db;
 var lbTables = ['AccessToken', 'ACL', 'RoleMapping', 'Role'];
