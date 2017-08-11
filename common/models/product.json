@@ -41,6 +41,15 @@
   "acls": [
   ],
   "methods": {
+    "prototype.update": {
+      "description": "Updates product attributes",
+      "http": { "path":"/", "verb": "patch" },
+      "accepts": [
+        {"arg": "options", "type": "object", "http": "optionsFromRequest"},
+        {"arg": "data", "type": "object", "required": "true", "http": {"source": "body"}}
+      ],
+      "returns": { "arg": "data", "type": "Product", "root": true}
+    },
     "prototype.purchase": {
       "description": "Creates a customer purchase",
       "http": { "path":"/purchases", "verb": "post" },

@@ -1,5 +1,5 @@
 {
-  "name": "Order",
+  "name": "Purchase",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

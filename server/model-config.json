@@ -60,6 +60,7 @@
           "find": true,
           "findById": true,
           "create": true,
+          "update": true,
           "deleteById": true,
           "purchase": true,
           "like": true,

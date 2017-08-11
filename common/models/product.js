@@ -27,6 +27,52 @@ module.exports = function(Product) {
 
   methods.map(methodName => Product.disableRemoteMethodByName(methodName))
 
+  const stockValidation = function (err) { if (this.stock < 0) err() }
+  const priceValidation = function (err) { if (this.price < 0) err() }
+  Product.validate('stock', stockValidation, {message: 'Stock cannot be negative'})
+  Product.validate('price', priceValidation, {message: 'Price cannot be negative'})
+
+  Product.prototype.update = async function (options, data) {
+    const app = Product.app
+    const User = app.models.user
+    const Price = app.models.Price
+
+    const product = this
+
+    const trxIsolationOpts = {isolationLevel: Product.Transaction.READ_COMMITTED}
+    const trx = await Product.beginTransaction(trxIsolationOpts)
+    const trxOpts = {transaction: trx, timeout: 30 * 1000}
+
+    try {
+      const userId = options.accessToken.userId
+
+      if (data.price !== Number(product.price)) {
+        const priceUpdate = {
+          price: data.price,
+          productId: product.id,
+          userId: userId,
+        }
+        console.log('Creating price update from %f to %f', product.price, data.price)
+        await Price.upsert(priceUpdate, trxOpts)
+      }
+
+      const productUpdate = {
+        id: product.id,
+        name: data.name,
+        stock: data.stock,
+        price: data.price
+      }
+      console.log('Updating product')
+      const updatedProduct = await Product.upsert(productUpdate, trxOpts)
+      trx.commit()
+
+      return updatedProduct
+    } catch (err) {
+      trx.rollback()
+      throw err
+    }
+  }
+
   Product.prototype.purchase = async function (options, data) {
     const app = Product.app
     const User = app.models.user
