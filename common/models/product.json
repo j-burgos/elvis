@@ -25,6 +25,9 @@
       }
     }
   },
+  "scope": {
+    "order": "name"
+  },
   "validations": [],
   "relations": {
     "purchases": {
