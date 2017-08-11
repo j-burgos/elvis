@@ -1,9 +1,10 @@
 {
   "name": "elvis-lb",
+  "description": "Small snack store management",
   "version": "1.0.0",
   "main": "server/server.js",
   "engines": {
-    "node": ">=4"
+    "node": ">=8.0.0"
   },
   "scripts": {
     "lint": "eslint .",
@@ -11,8 +12,8 @@
     "start:development": "nodemon -L --exec babel-node .",
     "start:production": "node .",
     "posttest": "npm run lint && nsp check",
-    "create-lb-tables": "babel-node server/scripts/create-lb-tables.js",
-    "create-test-users": "babel-node server/scripts/create-test-users.js"
+    "create-lb-tables": "node server/scripts/create-lb-tables.js",
+    "create-test-users": "node server/scripts/create-test-users.js"
   },
   "dependencies": {
     "compression": "^1.0.3",
@@ -37,8 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/j-burgos/elvis"
   },
-  "license": "UNLICENSED",
-  "description": "elvis-lb"
+  "license": "MIT"
 }
