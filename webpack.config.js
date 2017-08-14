@@ -12,15 +12,15 @@ module.exports = {
     './client/src/index'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'public', 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/public/'
   },
   module: {
     loaders: [{
       test: /\.js|.jsx$/,
       exclude: /node_modules/,
-      include: path.join(__dirname, 'client'),
+      include: path.join(__dirname, 'client', 'src'),
       use: {
         loader: 'babel-loader',
         options: {
