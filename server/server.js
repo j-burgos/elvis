@@ -1,13 +1,11 @@
 'use strict';
 
-// Load environment variables from .env on development
 if (process.env.NODE_ENV === 'development') {
   require('dotenv').config()
 }
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-
 var app = module.exports = loopback();
 
 app.start = function() {
