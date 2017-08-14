@@ -1,35 +1,18 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
-module.exports = {
+const base = require('./webpack.config')
+
+module.exports = Object.assign(base, {
+  devtool: 'source-map',
   entry: [
-    './client/index'
+    './client/src/index'
   ],
-  output: {
-    path: path.join(__dirname, '.build/dist'),
-    filename: 'bundle.js',
-    publicPath: '/.build'
-  },
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel-loader'],
-      exclude: /node_modules/,
-      include: path.join(__dirname, 'client')
-    },
-    {
-      test: /\.css$/,
-      use: [
-        { loader: "style-loader" },
-        { loader: "css-loader" }
-      ]
-    }]
-  },
   plugins: [
     new webpack.DefinePlugin(process.env),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       compress: {
         screw_ie8: true, // React doesn't support IE8
         warnings: false
@@ -43,4 +26,4 @@ module.exports = {
       }
     })
   ]
-};
+})
