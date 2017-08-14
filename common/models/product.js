@@ -12,6 +12,16 @@ const methods =  [
   'prototype.__link__purchases',
   'prototype.__exists__purchases',
 
+  'prototype.__count__prices',
+  'prototype.__create__prices',
+  'prototype.__findById__prices',
+  'prototype.__delete__prices',
+  'prototype.__destroyById__prices',
+  'prototype.__updateById__prices',
+  'prototype.__unlink__prices',
+  'prototype.__link__prices',
+  'prototype.__exists__prices',
+
   'prototype.__get__likes',
   'prototype.__create__likes',
   'prototype.__findById__likes',

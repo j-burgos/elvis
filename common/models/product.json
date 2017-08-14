@@ -39,6 +39,11 @@
       "type": "hasAndBelongsToMany",
       "model": "user",
       "foreignKey": "productId"
+    },
+    "prices": {
+      "type": "hasMany",
+      "model": "Price",
+      "foreignKey": "productId"
     }
   },
   "acls": [
@@ -60,7 +65,21 @@
       "principalType": "ROLE",
       "principalId": "admin",
       "permission": "ALLOW",
+      "property": "update"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
       "property": "deleteById"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "__get__prices"
     },
     {
       "accessType": "EXECUTE",
@@ -84,7 +103,14 @@
       "property": "dislike"
     },
     {
-      "accessType": "*",
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__count__likes"
+    },
+    {
+      "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
