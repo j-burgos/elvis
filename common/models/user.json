@@ -7,14 +7,13 @@
     "validateUpsert": true
   },
   "properties": {},
-  "hidden": [
-    "realm", "username", "password", "emailVerified"
-  ],
+  "hidden": ["password", "emailVerified"],
+  "protected": ["username", "realm"],
   "validations": [],
   "relations": {
     "purchases": {
       "type": "hasMany",
-      "model": "Order",
+      "model": "Purchase",
       "foreignKey": "userId"
     }
   },
