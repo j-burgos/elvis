@@ -16,8 +16,8 @@
     "create-lb-tables:development": "node -r dotenv/config server/scripts/create-lb-tables.js",
     "create-lb-tables:production": "node server/scripts/create-lb-tables.js",
     "create-test-data": "per-env",
-    "create-test-data:development": "node -r dotenv/config server/scripts/create-test-users.js",
-    "create-test-data:production": "node server/scripts/create-test-users.js"
+    "create-test-data:development": "node -r dotenv/config server/scripts/create-test-data.js",
+    "create-test-data:production": "node server/scripts/create-test-data.js"
   },
   "dependencies": {
     "compression": "^1.0.3",
