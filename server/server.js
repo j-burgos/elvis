@@ -1,9 +1,5 @@
 'use strict';
 
-if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config()
-}
-
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 var app = module.exports = loopback();
@@ -28,6 +24,20 @@ boot(app, __dirname, function(err) {
   if (err) throw err;
 
   // start the server if `$ node server.js`
-  if (require.main === module)
+  if (require.main === module) {
+    const mode = process.env.NODE_ENV || 'development'
+    if (mode === 'development') {
+      const webpack = require('webpack')
+      const config = require(`../webpack.config.${mode}`)
+      const compiler = webpack(config);
+      const webpackDevMiddleware = require('webpack-dev-middleware')
+      const webpackHotMiddleware = require('webpack-hot-middleware')
+      app.use(webpackDevMiddleware(compiler, {
+        noInfo: true,
+        publicPath: config.output.publicPath
+      }));
+      app.use(webpackHotMiddleware(compiler))
+    }
     app.start();
+  }
 });
