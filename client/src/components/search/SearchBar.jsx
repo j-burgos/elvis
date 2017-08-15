@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import './SearchBar.css'
+
 export default class SearchBar extends Component {
   constructor (props) {
     super(props)
@@ -25,8 +27,8 @@ export default class SearchBar extends Component {
   render () {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" name="search" autoComplete="off" onChange={this.handleInputChange} />
-        <input type="submit" value="Search" />
+        <input type='text' name='search' autoComplete='off' className='text'
+          onChange={this.handleInputChange} />
       </form>
     )
   }

@@ -1,0 +1,20 @@
+.product {
+  flex-direction: row;
+  display: flex;
+  padding: 0.6em;
+}
+
+.product .name {
+  flex: 3;
+  text-align: left;
+}
+
+.product .price {
+  flex: 2;
+  text-align: left;
+}
+
+.product div {
+  flex: 1;
+  text-align: left;
+}

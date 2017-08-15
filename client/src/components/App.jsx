@@ -52,10 +52,14 @@ export default class App extends Component {
       : products.length > 0 ? <ProductList products={products}/>
       : <EmptyProductList />
     return (
-      <div>
-        <h1>Elvis</h1>
-        <SearchBar onSearch={this.handleSearch} />
-        { result }
+      <div className='screen-container'>
+        <div className='screen'>
+          <h1 className='app-title'>Elvis-Tek</h1>
+          <SearchBar onSearch={this.handleSearch} />
+          <div className='results'>
+            { result }
+          </div>
+        </div>
       </div>
     )
   }
