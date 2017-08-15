@@ -14,7 +14,7 @@
     "build": "per-env",
     "build:development": "webpack --progress --profile --colors --config webpack.config.development.js",
     "build:production": "webpack -p --progress --profile --colors --config webpack.config.production.js",
-    "postinstall": "npm run build",
+    "heroku-postbuild": "npm run build",
     "posttest": "npm run lint && nsp check",
     "create-lb-tables": "per-env",
     "create-lb-tables:development": "node -r dotenv/config server/scripts/create-lb-tables.js",
