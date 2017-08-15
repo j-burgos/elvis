@@ -23,6 +23,11 @@
         "dataPrecision": 10,
         "dataScale": 2
       }
+    },
+    "popularity": {
+      "type": "number",
+      "required": false,
+      "default": 0
     }
   },
   "scope": {

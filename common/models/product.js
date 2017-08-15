@@ -133,6 +133,8 @@ module.exports = function(Product) {
     const product = this
     const userId = options.accessToken.userId
     await product.likes.add(userId)
+    product.popularity += 1
+    product.save()
     return product
   }
 
@@ -140,6 +142,8 @@ module.exports = function(Product) {
     const product = this
     const userId = options.accessToken.userId
     await product.likes.remove(userId)
+    product.popularity -= 1
+    product.save()
     return product
   }
 }
