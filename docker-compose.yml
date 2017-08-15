@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    env_file: .env
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgres://elvisapp@db/elvis
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: elvisapp
+      POSTGRES_DB: elvis

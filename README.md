@@ -37,3 +37,18 @@ To create a few users and some products
 To start the application run:
 `npm start`
 
+Then go to: `http://localhost:3000/`
+
+## Running with docker
+
+If you have `docker` and `docker-compose` installed you can start the project:
+
+`docker-compose up --build # Live logs`
+or
+`docker-compose up --build -d # Start in background`
+
+And then to create the tables and test data
+`docker-compose exec web npm run db:create-test-data`
+`docker-compose exec web npm run db:create-test-data`
+
+Then go to: `http://localhost:3000/`
