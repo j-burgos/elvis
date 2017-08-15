@@ -54,7 +54,7 @@ export default class App extends Component {
     return (
       <div className='screen-container'>
         <div className='screen'>
-          <h1 className='app-title'>Elvis-Tek</h1>
+          <h1 className='app-title'>Elvis</h1>
           <SearchBar onSearch={this.handleSearch} />
           <div className='results'>
             { result }
