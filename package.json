@@ -16,12 +16,12 @@
     "build:production": "webpack -p --progress --profile --colors --config webpack.config.production.js",
     "heroku-postbuild": "npm run build",
     "posttest": "npm run lint && nsp check",
-    "create-lb-tables": "per-env",
-    "create-lb-tables:development": "node -r dotenv/config server/scripts/create-lb-tables.js",
-    "create-lb-tables:production": "node server/scripts/create-lb-tables.js",
-    "create-test-data": "per-env",
-    "create-test-data:development": "node -r dotenv/config server/scripts/create-test-data.js",
-    "create-test-data:production": "node server/scripts/create-test-data.js"
+    "db:create-schema": "per-env",
+    "db:create-schema:development": "node -r dotenv/config server/scripts/db-schema.js",
+    "db:create-schema:production": "node server/scripts/db-schema.js",
+    "db:create-test-data": "per-env",
+    "db:create-test-data:development": "node -r dotenv/config server/scripts/db-test-data.js",
+    "db:create-test-data:production": "node server/scripts/db-test-data.js"
   },
   "dependencies": {
     "axios": "^0.16.2",

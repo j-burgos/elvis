@@ -100,7 +100,6 @@ const createTestData = async (app) => {
   }
 }
 
-ds.autoupdate(async () => {
-  await createTestData(server)
-  console.log('Completed')
-})
+createTestData(server)
+.then(() => console.log('Completed'))
+.catch(err => console.error(err))
