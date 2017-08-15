@@ -10,6 +10,11 @@ module.exports = Object.assign(base, {
     'webpack-hot-middleware/client',
     './client/src/index'
   ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/dist/'
+  },
   plugins: [
     new webpack.DefinePlugin(process.env),
     new webpack.HotModuleReplacementPlugin(),
