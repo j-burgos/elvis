@@ -4,12 +4,13 @@ import './Product.css'
 
 export default class Product extends Component {
   render () {
-    const { name, price, stock } = this.props
+    const { className, name, price, stock } = this.props
+    const cn = className ? `${className} product` : 'product'
     return (
-      <div className='product'>
+      <div className={cn}>
         <div className='name'>{ name }</div>
         <div className='price'>{ price }</div>
-        <div>{ stock }</div>
+        <div className='stock'>{ stock }</div>
       </div>
     )
   }
